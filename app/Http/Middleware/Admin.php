@@ -20,7 +20,7 @@ class Admin
         {
             return $next($request);
         }else{
-            return redirect('home');
+            return redirect('/login');
         }
     }
 }

@@ -13,8 +13,8 @@ class UpdateArticleTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->string('url')->default('default.jpg');
+        Schema::table('articles', function (Blueprint $table) {
+            $table->string('img')->default('default.jpg');
 //
         });
     }
@@ -26,8 +26,8 @@ class UpdateArticleTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->string('url');
+        Schema::table('articles', function (Blueprint $table) {
+            $table->string('img');
 //
         });
     }

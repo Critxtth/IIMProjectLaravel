@@ -9,15 +9,18 @@
 
                     @foreach($articles as $article)
 
-                        <div class="blog-post">
-                            <a href="{{ $article->id }}"><h1 class="blog-post-title">{{ $article->title }}</h1></a>
+                        <div class="blog-article">
+                            <a href="{{ $article->id }}"><h1 class="blog-article-title">{{ $article->title }}</h1></a>
 
-                            <p>{{ $article->body }}</p>
-                            @if($article->url == 'default.jpg')
+
+                            <p>{{ $article->content }}</p>
+
+                            @if($article->img == 'default.jpg')
                             @else
-                                <p><img src="upload/{{ $article->url }}" alt="" style="width: 600px; height: 400px"></p>
+                                <p><img src="upload/{{ $article->img }}" alt=""></p>
                             @endif
-                            <hr>
+
+
 
 
 
@@ -27,22 +30,6 @@
 
                 </div><!-- /.blog-main -->
 
-                <aside class="col-sm-3 ml-sm-auto blog-sidebar">
-
-                    <div class="sidebar-module">
-                        <h4>Anciens articles</h4>
-                        @foreach($articles as $article)
-                            <ol class="list-unstyled">
-                                <li><a href="{{ $article->id }}">{{ $article->title }}</a></li>
-
-                            </ol>
-
-                        @endforeach
-
-                    </div>
-
-
-                </aside><!-- /.blog-sidebar -->
 
             </div><!-- /.row -->
 

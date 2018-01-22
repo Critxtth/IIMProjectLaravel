@@ -15,8 +15,15 @@
                   class="form-control" placeholder="Contenu">{{old('content', $item->content)}}</textarea>
     </div>
 
+    <select name="is_done" id="" class="form-control">
+
+        <option value="0">Non</option>
+        <option value="1">Oui</option>
+
+    </select>
+
     <div class="form-group">
-        <input type="file" id="img" name="img" class="form-control" placeholder="Image">
+        <input type="file" id="img" name="img"  value="" class="form-control" placeholder="Image">
     </div>
 
     <button class="btn btn-primary btn-block">Envoyer</button>
