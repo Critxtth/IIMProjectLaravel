@@ -16,9 +16,9 @@ class ArticleRequest extends FormRequest
     {
         if (Auth::check() && Auth::user()->isAdmin()){
 
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**

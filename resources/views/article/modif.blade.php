@@ -26,19 +26,23 @@
                                 <a href="{{ $article->id }}" class="btn btn-success btn-sm">
                                     Show
                                 </a>
-                                <span>|</span>
+
 
 
                                 <a href="{{ route('edit', [$article->id]) }}" class="btn btn-primary btn-sm">
                                     Edit
                                 </a>
-                                <span>|</span>
-                                <a href="" class="btn btn-danger btn-sm"
-                                   onclick="event.preventDefault();document.getElementById('form-{!! $article->id !!}').submit();">
-                                     Delete
+
+                                <a href="#" onclick="event.preventDefault();
+                                        document.getElementById('form-{!! $article->id !!}').submit();" class="btn btn-danger btn-sm">
+                                    Supprimer
                                 </a>
 
-
+                                <form id="form-{{$article->id}}" method="POST"
+                                      action="{{route('destroy', [$article->id])}}">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                </form>
 
                             </td>
 

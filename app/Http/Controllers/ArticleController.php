@@ -47,31 +47,27 @@ class ArticleController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         $this->validate(request(),[
             'title' => 'required',
             'content'  => 'required',
-            'url'   =>  'sometimes|image|mimes:jpg,jpeg,gif,png|max:2028',
+            'img'   =>  'sometimes|image|mimes:jpg,jpeg,gif,png|max:2028',
         ]);
-//        Post::create([
-//            'title'    => request('title'),
-//            'body'     => request('body'),
-//            'user_id'  => auth()->id(),
-//            'url'   =>  request('url'),
-//        ]);
+
         $article = new Article;
         $article->title = request('title');
         $article->content = request('content');
         $article->user_id = auth()->id();
-        if(!$request->hasFile('url')){
+        if(!$request->hasFile('img')){
             $article->save();
         }else{
-            $img_name = time(). '.' . $request->url->getClientOriginalExtension();
-            $article->url  =  $img_name;
+            $img_name = time(). '.' . $request->img->getClientOriginalExtension();
+            $article->img  =  $img_name;
             $article->save();
-            $request->url->move(public_path('upload'),$img_name);
+            $request->img->move(public_path('upload'),$img_name);
         }
         return redirect('/');
     }
@@ -89,7 +85,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $like = Like::get();
+        $like = like::get();
         return view('article.show', compact('article', 'like'));
     }
 
