@@ -1,21 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex-center position-ref full-height">
-        <div class="content">
 
-            <div class="container bg-light article">
-                <h1 class="text-center">{{ $article->title }}</h1>
-                <div class="text-center">{{ $article->content }}</div>
-                <div class="container">
-                    <ul class="list-unstyled">
-                        <li><em>écrit le : {{ $article->created_at }}</em></li>
-                        <li><em>par : {{ $article->who($article->user_id) }}</em></li>
-                        <li><em>Modifié le : {{ $article->updated_at }}</em></li>
-                    </ul>
-                </div>
+    <main role="main" class="container">
 
-            </div>
-        </div>
-    </div>
+        <div class="row">
+
+            <div class="col-sm-8 blog-main">
+
+                <div class="blog-post" data-postid="{{ $article->id }}">
+                    <h1 class="blog-post-title">{{ $article->title }}</h1>
+
+                    <p>{{ $article->content }}</p>
+
+                    <br><br>
+                    <div>
+                        <h2>Commentaires: </h2>
+                        <ul class="list-group">
+
+                        </ul>
+                    </div>
+
+
+                </div><!-- /.blog-post -->
+
+
+
+
+
+
+
+
+
+        </div><!-- /.row -->
+
+    </main><!-- /.container -->
+
+
+
 @endsection

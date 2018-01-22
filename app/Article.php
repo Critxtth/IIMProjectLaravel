@@ -7,14 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'user_id',
         'title',
         'content',
-        'created_at',
-        'updated_at'
+        'is_completed',
+        'user_id'
     ];
-    public function who($id){
-        $user = User::find($id);
-        return $user->name;
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
+    public function likes(){
+        return $this->belongsTo('App\Like');
+    }
+    public function like(){
+        return $this->hasMany(Like::class);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments(){
+        return $this->hasMany(Comment::class)->latest();
+    }
+    public function addComment($content, $user_id){
+        $this->comments()->create(compact('content','user_id'));
+    }
+
 }

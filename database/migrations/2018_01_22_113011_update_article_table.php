@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentTable extends Migration
+class UpdateArticleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('post_id');
-            $table->string('content');
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('url')->default('default.jpg');
+//
         });
     }
 
@@ -29,6 +26,9 @@ class CreateCommentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('url');
+//
+        });
     }
 }

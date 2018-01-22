@@ -4,7 +4,7 @@
         <div class="row">
             @include('article.partials.errors')
             <div class="col-xs-12 panel">
-                <div class="panel-heading">Créer un nouvel article</div>
+                <div class="panel-heading" style="font-size: 25px;">Créer un nouvel article</div>
                 @include('article.partials.form' ,['item' => $article])
             </div>
         </div>

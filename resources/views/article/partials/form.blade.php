@@ -1,4 +1,4 @@
-<form action="{{$item->exists ? route('article.update', [$item->id]): route('article.store')}}" method="POST">
+<form action="{{$item->exists ? route('articles.update', [$item->id]) : route('articles.store')}}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     {{ method_field( $item->exists ? 'PUT' : 'POST') }}

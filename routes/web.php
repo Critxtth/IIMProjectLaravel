@@ -12,13 +12,18 @@
 */
 
 
-Route::get('/', 'PageController@welcomePage');
 
 Auth::routes();
 
+Route::resource('/', 'ArticleController');
 Route::resource('/articles', 'ArticleController');
 
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/create', 'ArticleController@store');
+
+
+
+Route::get('/{article}/edit', 'ArticleController@edit');
+Route::get('/modif', 'ArticleController@articles');
+
+Route::get('/{article}', 'ArticleController@show');
