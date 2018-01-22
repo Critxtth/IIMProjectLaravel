@@ -35,7 +35,7 @@
 
                                 <a href="#" onclick="event.preventDefault();
                                         document.getElementById('form-{!! $article->id !!}').submit();" class="btn btn-danger btn-sm">
-                                    Supprimer
+                                    Delete
                                 </a>
 
                                 <form id="form-{{$article->id}}" method="POST"
