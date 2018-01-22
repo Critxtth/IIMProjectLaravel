@@ -64,11 +64,11 @@
 
                        <a href="login"><textarea
 
-                             class="input"
+            class="input"
 
-                             placeholder="Add comment..."
+            placeholder="Add comment..."
 
-                             required></textarea></a>
+            required></textarea></a>
 
                    </div>
 
