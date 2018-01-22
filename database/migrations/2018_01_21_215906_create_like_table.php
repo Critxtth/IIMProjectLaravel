@@ -13,9 +13,13 @@ class CreateLikeTable extends Migration
      */
     public function up()
     {
-        Schema::create('like', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->integer('user_id'); // on user table
+            $table->integer('post_id'); // on post table
+            $table->boolean('like');
+
         });
     }
 

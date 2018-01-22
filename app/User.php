@@ -26,4 +26,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return $this->admin ? true : false; // this looks for an admin column in your users table
+    }
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+    public function post()
+    {
+        return $this->hasMany('App\Article');
+    }
+
 }
