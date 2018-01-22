@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -13,8 +16,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all();
+        return view('article.index', compact('articles'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +29,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+
+        $article = new Article();
+        return view('article.create', compact('article'));
+
     }
 
     /**
@@ -32,9 +41,13 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $datas = collect($request->except('_token', '_method'));
+        $userId = Auth::user()->id;
+        $datas = $datas->put('user_id', $userId);
+        article::create($datas->toArray());
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -43,9 +56,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        return view('article.show', compact('article'));
     }
 
     /**
