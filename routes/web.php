@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/', 'ArticleController');
+Route::resource('/articles', 'ArticleController');
 
 Route::get('/{pageId}', function($pageId){
 
@@ -30,3 +32,12 @@ Route::get('comments/{pageId}', 'CommentController@index');
 Route::post('comments', 'CommentController@store');
 
 Route::post('comments/{commentId}/{type}', 'CommentController@update');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/create', 'ArticleController@store');
+
+
+
+Route::get('/{article}/edit', 'ArticleController@edit');
+Route::get('/modif', 'ArticleController@articles');
+
+Route::get('/{article}', 'ArticleController@show');
